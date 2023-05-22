@@ -10,8 +10,8 @@ jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.og4r9o1.mongodb.net
-      MONGODB_USERNAME: romainlepoittevin
-      MONGODB_PASSWORD: McwnGDQXvqqTm89T
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }} #credentials stored in organization or repository
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
@@ -34,7 +34,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Output information #first echo not available, second yes
+      - name: Output information
         run: |        
-          echo "0 MONGODB_USERNAME ${{ env.MONGODB_USERNAME }}" 
+          echo "0 MONGODB_USERNAME $MONGODB_USERNAME" 
           echo "1 MONGODB_USERNAME ${{ env.MONGODB_USERNAME }}" 
